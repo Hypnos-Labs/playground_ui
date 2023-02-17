@@ -125,7 +125,7 @@ const Home: NextPage = () => {
       const res = await signingClient.instantiate(
         walletAddress, 
         result.codeId, 
-        '{instantiate: {}}', 
+        {}, 
         "test", 
         "auto"
       )
@@ -145,7 +145,7 @@ const Home: NextPage = () => {
     }
   }
 
-  const init = async () => {
+  const init = async (id: number) => {
     try {
       if (walletAddress.length < 3 || !signingClient) {
         console.log("No wallet connected");
@@ -154,7 +154,7 @@ const Home: NextPage = () => {
 
       const res = await signingClient.instantiate(
         walletAddress, 
-        2055, 
+        id, 
         {}, 
         "test", 
         "auto"
@@ -245,7 +245,7 @@ const Home: NextPage = () => {
         <div className="row-span-2 flex px-10 justify-between border border-red-600">
           <div className="flex flex-col border-4 gap-y-2">
 
-          <button onClick={init} className="border-2 border-purple-600 hover:bg-green-500/50 rounded-xl h-1/4 px-2 py-1">
+          <button onClick={() => init(1)} className="border-2 border-purple-600 hover:bg-green-500/50 rounded-xl h-1/4 px-2 py-1">
             Upload or Init
           </button>
           <input
